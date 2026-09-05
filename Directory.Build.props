@@ -1,0 +1,25 @@
+<Project>
+
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <!--
+      Invariant globalization stays on: every reading on screen is formatted with the invariant
+      culture on purpose, so a decimal point never turns into a comma halfway down a card.
+
+      PredefinedCulturesOnly is the one part of it that has to be relaxed. It defaults to true
+      whenever InvariantGlobalization is true, and then new CultureInfo("ru") throws
+      CultureNotFoundException — which is exactly what a ResourceManager lookup needs in order to
+      pick a .resx set. Turning it off only allows the CultureInfo objects to exist; they still
+      behave invariantly, so no number or comparison changes behaviour.
+    -->
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <PredefinedCulturesOnly>false</PredefinedCulturesOnly>
+    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
+    <AccelerateBuildsInVisualStudio>true</AccelerateBuildsInVisualStudio>
+  </PropertyGroup>
+
+  <!-- The legacy placeholder project at ./TurntableSpeed/ predates this layout and is not part of the solution. -->
+
+</Project>

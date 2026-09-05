@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    English. Ships as a satellite assembly (en/TurntableSpeed.App.resources.dll); the Russian
+    neutral set in AppStrings.resx is the fallback for anything missing here.
+
+    Keys must match AppStrings.resx exactly, and so must the {0} placeholders — a translation
+    that drops one throws FormatException at the user rather than at build time. The parity test
+    in TurntableSpeed.Core.Tests/Localization checks both.
+  -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <!-- ==== Shell ==== -->
+  <data name="TabSensors" xml:space="preserve"><value>Sensors</value></data>
+  <data name="TabMicrophone" xml:space="preserve"><value>Microphone</value></data>
+  <data name="TabDiagnostics" xml:space="preserve"><value>Diagnostics</value></data>
+
+  <!-- ==== Shared vocabulary ==== -->
+  <data name="ButtonStart" xml:space="preserve"><value>Start</value></data>
+  <data name="ButtonStop" xml:space="preserve"><value>Stop</value></data>
+  <data name="ButtonReset" xml:space="preserve"><value>Reset</value></data>
+  <data name="ButtonRefresh" xml:space="preserve"><value>Refresh</value></data>
+  <data name="SectionState" xml:space="preserve"><value>STATUS</value></data>
+  <data name="LabelDisagreement" xml:space="preserve"><value>Disagreement</value></data>
+  <data name="NoData" xml:space="preserve"><value>no data</value></data>
+
+  <!-- ==== Units ==== -->
+  <data name="UnitRpm" xml:space="preserve"><value>rpm</value></data>
+  <data name="UnitHertz" xml:space="preserve"><value>Hz</value></data>
+  <data name="UnitSeconds" xml:space="preserve"><value>s</value></data>
+  <data name="UnitAmplitude" xml:space="preserve"><value>ampl.</value></data>
+  <data name="UnitMicrotesla" xml:space="preserve"><value>µT</value></data>
+  <data name="UnitRadiansPerSecond" xml:space="preserve"><value>rad/s</value></data>
+  <data name="UnitMetresPerSecondSquared" xml:space="preserve"><value>m/s²</value></data>
+
+  <!-- ==== Headline reading ==== -->
+  <data name="RpmValue" xml:space="preserve">
+    <value>{0} rpm</value>
+    <comment>{0} is the already-formatted speed.</comment>
+  </data>
+  <data name="SpeedInterval95" xml:space="preserve">
+    <value>± {0} rpm (95%)</value>
+    <comment>{0} is the half-width of the confidence interval.</comment>
+  </data>
+  <data name="ConfidenceNoSignal" xml:space="preserve"><value>no signal</value></data>
+  <data name="ConfidenceCollecting" xml:space="preserve"><value>collecting</value></data>
+  <data name="ConfidenceConverging" xml:space="preserve"><value>converging</value></data>
+  <data name="ConfidenceConfident" xml:space="preserve"><value>confident</value></data>
+
+  <!-- ==== Sensor screen ==== -->
+  <data name="SensorSectionZero" xml:space="preserve"><value>GYROSCOPE ZERO CALIBRATION</value></data>
+  <data name="SensorZeroHint" xml:space="preserve"><value>Stop the platter for 2–3 seconds. Without this the zero offset is unknown and the instantaneous speed drifts away.</value></data>
+  <data name="SensorZeroButton" xml:space="preserve"><value>Measure zero</value></data>
+  <data name="SensorSectionInstant" xml:space="preserve"><value>INSTANTANEOUS SPEED</value></data>
+  <data name="SensorSectionWow" xml:space="preserve"><value>WOW AND FLUTTER</value></data>
+  <data name="SensorWowHint" xml:space="preserve"><value>Expected peaks: the platter's rotation rate, the motor pulley, the belt period.</value></data>
+  <data name="LabelOrientation" xml:space="preserve"><value>Orientation</value></data>
+  <data name="LabelSpinUp" xml:space="preserve"><value>Spin-up time</value></data>
+  <data name="LabelGyroScale" xml:space="preserve"><value>Gyroscope scale</value></data>
+  <data name="SensorPlotRateEmpty" xml:space="preserve"><value>no gyroscope data</value></data>
+  <data name="SensorPlotWowEmpty" xml:space="preserve"><value>the spectrum appears after a few revolutions</value></data>
+  <data name="SensorZeroNotMeasured" xml:space="preserve"><value>Gyroscope zero not measured</value></data>
+  <data name="SensorNoInertialSensors" xml:space="preserve"><value>No inertial sensors on this device</value></data>
+  <data name="SensorZeroHoldStill" xml:space="preserve"><value>Stop the platter and do not touch the phone</value></data>
+  <data name="SensorZeroMeasuring" xml:space="preserve">
+    <value>Measuring zero: {0}</value>
+    <comment>{0} is the fraction of data collected, as a percentage.</comment>
+  </data>
+  <data name="SensorZeroStillTurning" xml:space="preserve"><value>The platter was still turning — stop it and try again</value></data>
+  <data name="SensorZeroPhoneMoved" xml:space="preserve"><value>The phone moved — put it back on the platter and try again</value></data>
+  <data name="SensorZeroMeasured" xml:space="preserve">
+    <value>Zero measured: |offset| {0} rad/s, σ {1}</value>
+    <comment>{0} is the magnitude of the bias, {1} the largest per-axis standard deviation.</comment>
+  </data>
+  <data name="SensorWowSummary" xml:space="preserve">
+    <value>RMS {0}%, peak {1}% at {2} Hz</value>
+    <comment>{0} is the wow RMS, {1} the peak, {2} the peak's frequency.</comment>
+  </data>
+  <data name="SensorDisagreement" xml:space="preserve">
+    <value>{0}% (gyroscope vs magnetometer)</value>
+    <comment>{0} is the signed disagreement.</comment>
+  </data>
+  <data name="SensorTilt" xml:space="preserve"><value>tilt {0}°</value></data>
+  <data name="SensorRadius" xml:space="preserve">
+    <value>, radius ≈ {0} cm</value>
+    <comment>Appended to SensorTilt, hence the leading comma.</comment>
+  </data>
+  <data name="SensorSpinUpSeconds" xml:space="preserve"><value>{0} s</value></data>
+  <data name="SensorSpinUpNotObserved" xml:space="preserve"><value>not observed</value></data>
+  <data name="SensorGyroScaleMeasured" xml:space="preserve"><value>{0} (measured against the magnetometer)</value></data>
+  <data name="SensorGyroScaleNotMeasured" xml:space="preserve"><value>not measured</value></data>
+
+  <!-- ==== Audio screen ==== -->
+  <data name="AudioSectionNominal" xml:space="preserve"><value>NOMINAL SPEED</value></data>
+  <data name="AudioNominalHint" xml:space="preserve"><value>A pitch deviation has to be measured against something. Say which speed the record is playing at.</value></data>
+  <data name="AudioSectionInput" xml:space="preserve"><value>INPUT</value></data>
+  <data name="AudioSectionAutocorrelation" xml:space="preserve"><value>CLICK AUTOCORRELATION</value></data>
+  <data name="AudioAcfHint" xml:space="preserve"><value>The peak is the revolution period. No peak means there is nothing to lock onto: try the lead-in groove.</value></data>
+  <data name="AudioSectionSpectrum" xml:space="preserve"><value>SPECTRUM</value></data>
+  <data name="LabelPitchDeviation" xml:space="preserve"><value>Pitch deviation</value></data>
+  <data name="LabelWowSpectrum" xml:space="preserve"><value>Wow spectrum</value></data>
+  <data name="AudioWowHint" xml:space="preserve"><value>Long measurement: put the phone down and leave it alone for 2–3 minutes.</value></data>
+  <data name="AudioPlotAcfEmpty" xml:space="preserve"><value>waiting for 10–15 seconds of audio</value></data>
+  <data name="AudioPlotSpectrumEmpty" xml:space="preserve"><value>no signal</value></data>
+  <data name="AudioStatusReady" xml:space="preserve"><value>Ready to start</value></data>
+  <data name="AudioStatusRequestingMicrophone" xml:space="preserve"><value>Requesting microphone access…</value></data>
+  <data name="AudioStatusMicrophoneDenied" xml:space="preserve"><value>Without microphone access the acoustic mode cannot run</value></data>
+  <data name="AudioStatusMicrophoneFailed" xml:space="preserve">
+    <value>Could not open the microphone: {0}</value>
+    <comment>{0} is the system's own message and is not translated.</comment>
+  </data>
+  <data name="AudioStatusRunning" xml:space="preserve"><value>Measuring</value></data>
+  <data name="AudioStatusCaptureFailed" xml:space="preserve"><value>Capture interrupted: {0}</value></data>
+  <data name="AudioStatusStopped" xml:space="preserve"><value>Stopped</value></data>
+  <data name="AudioInputLevel" xml:space="preserve">
+    <value>{0} dBFS (peak {1})</value>
+    <comment>{0} is the RMS level, {1} the peak level.</comment>
+  </data>
+  <data name="AudioInputQuality" xml:space="preserve">
+    <value>noise floor {0} dBFS, dynamic range {1} dB</value>
+  </data>
+  <data name="AudioClickReading" xml:space="preserve"><value>{0} ± {1} rpm</value></data>
+  <data name="AudioPitchCents" xml:space="preserve">
+    <value>{0} ¢</value>
+    <comment>{0} is the signed pitch deviation in cents.</comment>
+  </data>
+  <data name="AudioDisagreement" xml:space="preserve"><value>{0}% (pitch vs clicks)</value></data>
+  <data name="AudioWowPeak" xml:space="preserve"><value>peak at {0} Hz → {1} rpm</value></data>
+  <data name="AudioWowProgress" xml:space="preserve">
+    <value>{0} of 3 minutes collected</value>
+    <comment>{0} is the fraction collected, as a percentage.</comment>
+  </data>
+
+  <!-- ==== Diagnostics screen ==== -->
+  <data name="SectionLanguage" xml:space="preserve"><value>LANGUAGE</value></data>
+  <data name="LanguageHint" xml:space="preserve"><value>Switches immediately: screens are not reloaded and the measurement is not reset.</value></data>
+  <data name="DiagSectionDevice" xml:space="preserve"><value>DEVICE</value></data>
+  <data name="DiagSectionRaw" xml:space="preserve"><value>RAW SENSOR VALUES</value></data>
+  <data name="DiagSectionCapture" xml:space="preserve"><value>CAPTURE</value></data>
+  <data name="DiagSectionExport" xml:space="preserve"><value>RAW DATA EXPORT</value></data>
+  <data name="DiagExportHint" xml:space="preserve"><value>CSV and WAV in the same format the replay tests read — this is how the fixture set grows.</value></data>
+  <data name="LabelMagnetometer" xml:space="preserve"><value>Magnetometer</value></data>
+  <data name="LabelGyroscope" xml:space="preserve"><value>Gyroscope</value></data>
+  <data name="LabelAccelerometer" xml:space="preserve"><value>Accelerometer</value></data>
+  <data name="LabelAudio" xml:space="preserve"><value>Audio</value></data>
+  <data name="LabelGyroScaleFactor" xml:space="preserve"><value>Gyroscope scale factor</value></data>
+  <data name="LabelRecorded" xml:space="preserve"><value>Recorded</value></data>
+  <data name="DiagExportMagnetometerCsv" xml:space="preserve"><value>Magnetometer CSV</value></data>
+  <data name="DiagExportGyroscopeCsv" xml:space="preserve"><value>Gyroscope CSV</value></data>
+  <data name="DiagExportAccelerometerCsv" xml:space="preserve"><value>Accelerometer CSV</value></data>
+  <data name="DiagExportAudioWav" xml:space="preserve"><value>Audio WAV</value></data>
+  <data name="DiagSampleLine" xml:space="preserve">
+    <value>x {0}  y {1}  z {2} {3}  |v| {4}</value>
+    <comment>{0}..{2} are the axes, {3} the unit, {4} the vector magnitude.</comment>
+  </data>
+  <data name="DiagAudioCapture" xml:space="preserve">
+    <value>{0} Hz, {1} s recorded</value>
+    <comment>{0} is the sample rate, {1} the recorded duration.</comment>
+  </data>
+  <data name="DiagRecorded" xml:space="preserve">
+    <value>magnetometer {0}, gyroscope {1}, accelerometer {2} samples</value>
+  </data>
+  <data name="DiagExportNothing" xml:space="preserve"><value>Nothing to export — run a measurement first.</value></data>
+  <data name="DiagExportNoAudio" xml:space="preserve"><value>No audio has been recorded yet.</value></data>
+  <data name="DiagExportSaved" xml:space="preserve"><value>Saved: {0}</value></data>
+  <data name="DiagExportFailed" xml:space="preserve"><value>Could not save: {0}</value></data>
+
+  <!-- ==== Notices: sensor mode (§3) ==== -->
+  <data name="NoticeNoMagnetometerTitle" xml:space="preserve"><value>No magnetometer</value></data>
+  <data name="NoticeNoMagnetometerDetail" xml:space="preserve"><value>This device has no magnetometer — the mode's reference instrument. Only the gyroscope estimate is left, and its factory scale error of 1–3% shows in the width of the interval.</value></data>
+  <data name="NoticeSensorMethodsDisagreeTitle" xml:space="preserve"><value>Methods disagree</value></data>
+  <data name="NoticeSensorMethodsDisagreeDetail" xml:space="preserve"><value>The magnetometer and the gyroscope report different speeds. The magnetometer's value is shown; the disagreement is listed separately and means the result cannot be trusted yet.</value></data>
+  <data name="NoticeMagneticDisturbanceTitle" xml:space="preserve"><value>Magnetic disturbance</value></data>
+  <data name="NoticeMagneticDisturbanceDetail" xml:space="preserve"><value>The field phase fits a straight line noticeably worse than usual. Move speakers, power supplies and anything magnetised further away.</value></data>
+  <data name="NoticePhoneNotFlatTitle" xml:space="preserve"><value>The phone is not lying flat</value></data>
+  <data name="NoticePhoneNotFlatDetail" xml:space="preserve"><value>Lay the phone flat, screen up. This barely affects magnetometer accuracy, but it does interfere with the accelerometer checks.</value></data>
+  <data name="NoticeGyroZeroTitle" xml:space="preserve"><value>Gyroscope zero not calibrated</value></data>
+  <data name="NoticeGyroZeroDetail" xml:space="preserve"><value>Stop the platter for 2–3 seconds to measure the zero offset. Without it the gyroscope reports a shifted speed.</value></data>
+  <data name="NoticeNoGyroscopeTitle" xml:space="preserve"><value>No gyroscope</value></data>
+  <data name="NoticeNoGyroscopeDetail" xml:space="preserve"><value>Instantaneous speed, wow and flutter, and spin-up time are unavailable. The speed itself is measured by the magnetometer and does not suffer.</value></data>
+  <data name="NoticeNotEnoughRevolutionsTitle" xml:space="preserve"><value>Too few revolutions</value></data>
+  <data name="NoticeNotEnoughRevolutionsDetail" xml:space="preserve"><value>Let the platter make at least a few revolutions. Within 60 seconds the method reaches better than 0.05% accuracy.</value></data>
+  <data name="NoticeLoadTitle" xml:space="preserve"><value>The phone loads the platter</value></data>
+  <data name="LoadCaveat" xml:space="preserve">
+    <value>The phone weighs 150–250 g — on a budget belt drive that alone can slow the platter down. What is measured here is the speed with the phone on the platter, not while playing. Compare against the acoustic mode.</value>
+    <comment>Required by §3.6: shown with every sensor-mode result.</comment>
+  </data>
+
+  <!-- ==== Notices: audio mode (§4) ==== -->
+  <data name="NoticeInputProcessedTitle" xml:space="preserve"><value>The input is being processed</value></data>
+  <data name="NoticeInputProcessedDetail" xml:space="preserve"><value>Noise suppression or AGC appears not to have switched off. They remove exactly the clicks the main algorithm is built on, and the result cannot be trusted.</value></data>
+  <data name="NoticeClippingTitle" xml:space="preserve"><value>Input overload</value></data>
+  <data name="NoticeClippingDetail" xml:space="preserve"><value>The signal is hitting full scale. Move the phone away from the speaker or turn the volume down.</value></data>
+  <data name="NoticeTooQuietTitle" xml:space="preserve"><value>Too quiet</value></data>
+  <data name="NoticeTooQuietDetail" xml:space="preserve"><value>The microphone hears almost nothing. Move the phone closer or turn the volume up.</value></data>
+  <data name="NoticeAudioMethodsDisagreeTitle" xml:space="preserve"><value>Methods disagree</value></data>
+  <data name="NoticeAudioMethodsDisagreeDetail" xml:space="preserve"><value>The click period and the pitch deviation report different speeds. Most often this just means the record was not cut to 440 Hz — the clicks are the more reliable of the two.</value></data>
+  <data name="NoticeNoClicksTitle" xml:space="preserve"><value>No clicks found</value></data>
+  <data name="NoticeNoClicksDetail" xml:space="preserve"><value>On a clean record in a quiet room there is nothing to lock onto. Try the lead-in groove or a gap between tracks.</value></data>
+  <data name="NoticeNoNominalTitle" xml:space="preserve"><value>Nominal speed unknown</value></data>
+  <data name="NoticeNoNominalDetail" xml:space="preserve"><value>The pitch deviation is measured but there is nothing to apply it to. Choose 33⅓ / 45 / 78 by hand, or wait for the clicks to settle the nominal.</value></data>
+  <data name="NoticeCollectingTitle" xml:space="preserve"><value>Collecting</value></data>
+  <data name="NoticeCollectingDetail" xml:space="preserve"><value>A confident "33 or 45" takes 10–15 seconds.</value></data>
+  <data name="NoticeRecordTuningTitle" xml:space="preserve"><value>The record's own tuning is unknown</value></data>
+  <data name="PitchCaveat" xml:space="preserve">
+    <value>A pitch deviation mixes the turntable's error with the tuning of the recording itself: the band may not have played at 440 Hz, and the mastering may have drifted. The reference acoustic method is the clicks.</value>
+    <comment>Required by §4.3: shown with any pitch-grid reading.</comment>
+  </data>
+
+  <!-- ==== Notices: raw input diagnostics (§4.1) ==== -->
+  <data name="NoticeNoiseGateTitle" xml:space="preserve"><value>Looks like a noise gate</value></data>
+  <data name="NoticeNoiseGateDetail" xml:space="preserve"><value>In the pauses the signal drops to digital zero — no microphone in a real room does that. Input processing did not switch off.</value></data>
+  <data name="NoticeAgcTitle" xml:space="preserve"><value>Looks like AGC</value></data>
+  <data name="NoticeAgcDetail" xml:space="preserve"><value>The long-term level stays constant while the short-term dynamics are alive. Automatic gain control is distorting the envelope.</value></data>
+  <data name="NoticeRawInputUnavailableTitle" xml:space="preserve"><value>Unprocessed input unavailable</value></data>
+  <data name="NoticeRawInputUnavailableDetail" xml:space="preserve"><value>The system did not hand over an unprocessed stream. Measuring is still possible, but check the input diagnostics.</value></data>
+  <data name="NoticeInputClippingTitle" xml:space="preserve"><value>Overload</value></data>
+  <data name="NoticeInputClippingDetail" xml:space="preserve"><value>The signal is hitting full scale.</value></data>
+  <data name="NoticeInputTooQuietTitle" xml:space="preserve"><value>Too quiet</value></data>
+  <data name="NoticeInputTooQuietDetail" xml:space="preserve"><value>The level is below the working range.</value></data>
+  <data name="NoticeDcOffsetTitle" xml:space="preserve"><value>DC offset</value></data>
+  <data name="NoticeDcOffsetDetail" xml:space="preserve"><value>The signal has a noticeable zero offset — usually a sign of odd processing on the input.</value></data>
+  <data name="NoticeSampleRateTitle" xml:space="preserve"><value>Unexpected sample rate</value></data>
+  <data name="NoticeSampleRateDetail" xml:space="preserve"><value>The system delivered neither 44100 nor 48000 Hz. This does not affect accuracy, but it does say the capture request was not honoured in full.</value></data>
+
+  <!-- ==== Capture environment and platform errors ==== -->
+  <data name="CaptureUnavailable" xml:space="preserve"><value>Capture is unavailable on this platform</value></data>
+  <data name="ExportUnavailable" xml:space="preserve"><value>Export is unavailable on this platform.</value></data>
+  <data name="ErrorNoAudioRecorded" xml:space="preserve"><value>No audio has been recorded yet.</value></data>
+  <data name="ErrorNoExportDirectory" xml:space="preserve"><value>No directory available for export.</value></data>
+  <data name="ErrorAudioRecordInit" xml:space="preserve"><value>Could not initialise AudioRecord.</value></data>
+  <data name="AndroidSensorsNoAccess" xml:space="preserve"><value>no access to the sensors</value></data>
+  <data name="AndroidSensorMagnetometer" xml:space="preserve"><value>magnetometer: {0}</value></data>
+  <data name="AndroidSensorGyroscope" xml:space="preserve"><value>gyroscope: {0}</value></data>
+  <data name="AndroidSensorAccelerometer" xml:space="preserve"><value>accelerometer: {0}</value></data>
+  <data name="AnswerPresent" xml:space="preserve"><value>yes</value></data>
+  <data name="AnswerAbsent" xml:space="preserve"><value>no</value></data>
+  <data name="AndroidAudioDetails" xml:space="preserve">
+    <value>source {0}, {1} Hz, buffer {2} B</value>
+    <comment>{0} is the Android source name, {1} the sample rate, {2} the buffer size in bytes.</comment>
+  </data>
+  <data name="AndroidAudioUnprocessedUnsupported" xml:space="preserve"><value>the device does not support UNPROCESSED; source {0}, {1} Hz</value></data>
+
+</root>

@@ -1,0 +1,9 @@
+﻿# TurntableSpeed golden fixtures. See README.md.
+# expectedRpm is the physical truth; goldenRpm is what the estimator produced
+# when the fixture was recorded, and guards against silent behaviour changes.
+file,kind,expectedRpm,tolerancePercent,goldenRpm,notes
+synthetic-clicks-33.wav,AudioClick,33.333333333333336,0.3,33.328095282067,synthetic click train under an A major triad; 16 s
+synthetic-clicks-45.wav,AudioClick,45,0.3,45.019755246317125,synthetic click train under an A major triad; 16 s
+synthetic-clicks-33-slow.wav,AudioClick,32.733333333333334,0.3,32.753678356959846,synthetic click train under an A major triad; 18 s
+synthetic-magnetometer-33.csv,Magnetometer,33.333333333333336,0.05,33.33337119356248,synthetic magnetometer; 60 s
+synthetic-magnetometer-45-dirty.csv,Magnetometer,45,0.05,44.99977278808036,synthetic magnetometer; 60 s; with hard/soft iron and magnetic outliers

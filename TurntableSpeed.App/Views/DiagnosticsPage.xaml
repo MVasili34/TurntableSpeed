@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:loc="clr-namespace:TurntableSpeed.App.Localization"
+             x:Class="TurntableSpeed.App.Views.DiagnosticsPage"
+             Style="{StaticResource Screen}"
+             Title="{loc:Translate TabDiagnostics}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="{Binding ToggleLabel, Source={x:Static loc:LanguageViewModel.Instance}}"
+                     Command="{Binding ToggleCommand, Source={x:Static loc:LanguageViewModel.Instance}}" />
+    </ContentPage.ToolbarItems>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="14" Spacing="12">
+
+            <!--
+                The toolbar toggle flips between two languages and is enough for the everyday
+                case; this is where the choice is stated in full, next to everything else that
+                is configurable.
+            -->
+            <Border Style="{StaticResource Card}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Style="{StaticResource SectionTitle}" Text="{loc:Translate SectionLanguage}" />
+                    <Picker ItemsSource="{Binding Options, Source={x:Static loc:LanguageViewModel.Instance}}"
+                            SelectedIndex="{Binding SelectedIndex, Source={x:Static loc:LanguageViewModel.Instance}, Mode=TwoWay}"
+                            TextColor="{StaticResource Ink}" />
+                    <Label Style="{StaticResource Caption}" Text="{loc:Translate LanguageHint}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Style="{StaticResource Card}">
+                <VerticalStackLayout Spacing="6">
+                    <Label Style="{StaticResource SectionTitle}" Text="{loc:Translate DiagSectionDevice}" />
+                    <Label Style="{StaticResource Value}" Text="{Binding Device}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Style="{StaticResource Card}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Style="{StaticResource SectionTitle}" Text="{loc:Translate DiagSectionRaw}" />
+
+                    <Label Style="{StaticResource Caption}" Text="{loc:Translate LabelMagnetometer}" />
+                    <Label Style="{StaticResource Value}" FontFamily="Monospace" Text="{Binding Magnetometer}" />
+
+                    <Label Style="{StaticResource Caption}" Text="{loc:Translate LabelGyroscope}" />
+                    <Label Style="{StaticResource Value}" FontFamily="Monospace" Text="{Binding Gyroscope}" />
+
+                    <Label Style="{StaticResource Caption}" Text="{loc:Translate LabelAccelerometer}" />
+                    <Label Style="{StaticResource Value}" FontFamily="Monospace" Text="{Binding Accelerometer}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Style="{StaticResource Card}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Style="{StaticResource SectionTitle}" Text="{loc:Translate DiagSectionCapture}" />
+
+                    <Label Style="{StaticResource Caption}" Text="{loc:Translate LabelAudio}" />
+                    <Label Style="{StaticResource Value}" Text="{Binding AudioCapture}" />
+                    <Label Style="{StaticResource Value}" Text="{Binding AudioQuality}" />
+
+                    <Label Style="{StaticResource Caption}" Text="{loc:Translate LabelGyroScaleFactor}" />
+                    <Label Style="{StaticResource Value}" Text="{Binding GyroScaleFactor}" />
+
+                    <Label Style="{StaticResource Caption}" Text="{loc:Translate LabelRecorded}" />
+                    <Label Style="{StaticResource Value}" Text="{Binding Recorded}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Style="{StaticResource Card}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Style="{StaticResource SectionTitle}" Text="{loc:Translate DiagSectionExport}" />
+                    <Label Style="{StaticResource Caption}" Text="{loc:Translate DiagExportHint}" />
+
+                    <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="8" RowSpacing="8">
+                        <Button Grid.Row="0" Grid.Column="0" Text="{loc:Translate DiagExportMagnetometerCsv}" Command="{Binding ExportMagnetometerCommand}" />
+                        <Button Grid.Row="0" Grid.Column="1" Text="{loc:Translate DiagExportGyroscopeCsv}" Command="{Binding ExportGyroscopeCommand}" />
+                        <Button Grid.Row="1" Grid.Column="0" Text="{loc:Translate DiagExportAccelerometerCsv}" Command="{Binding ExportAccelerometerCommand}" />
+                        <Button Grid.Row="1" Grid.Column="1" Text="{loc:Translate DiagExportAudioWav}" Command="{Binding ExportAudioCommand}" />
+                    </Grid>
+
+                    <Label Style="{StaticResource Caption}" Text="{Binding ExportStatus}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Button Text="{loc:Translate ButtonRefresh}" Command="{Binding RefreshCommand}" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

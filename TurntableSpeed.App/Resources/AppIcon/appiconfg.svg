@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+    Foreground layer: platter seen from above with the arm across it.
+
+    Everything stays inside r=145 of the centre (456 * 0.33 ≈ 150), which is the safe circle an
+    Android adaptive icon guarantees to show; launcher masks eat anything outside it.
+
+    Four shapes and no more: platter, one groove, label, arm. Earlier drafts had three grooves
+    and thinner rings, and they turned to mush at the 48 dp a launcher actually draws.
+
+    Subpaths are wound deliberately: a hole is a subpath drawn the opposite way round (sweep 1)
+    from the shape it sits in, so the groove and the spindle cut straight through to the
+    background layer instead of being painted over in Surface. Fills only, no strokes.
+
+    The arm is a chord, not a radius — a radius from the rim to the label is too short to read
+    as an arm. Its bearing sits off the rim at r=122 and the line passes the centre at 72,
+    which clears the label once the Surface-coloured underlay is counted. That underlay is one
+    step wider than the arm on each side and is painted between the platter and the arm, so the
+    arm stays legible over the white. The headshell lands on the groove, where a stylus goes.
+-->
+<svg width="456" height="456" viewBox="0 0 456 456" version="1.1" xmlns="http://www.w3.org/2000/svg">
+
+    <!-- Platter, with the groove cut out of it. -->
+    <path fill="#E6EAEE"
+          d="M116,228 A112,112 0 1 0 340,228 A112,112 0 1 0 116,228 Z
+             M132,228 A96,96   0 1 1 324,228 A96,96   0 1 1 132,228 Z
+             M140,228 A88,88   0 1 0 316,228 A88,88   0 1 0 140,228 Z" />
+
+    <!-- Label, spindle hole cut out. -->
+    <path fill="#4FC3F7"
+          d="M180,228 A48,48 0 1 0 276,228 A48,48 0 1 0 180,228 Z
+             M219,228 A9,9   0 1 1 237,228 A9,9   0 1 1 219,228 Z" />
+
+    <!-- Separation gap under the arm. -->
+    <path fill="#101418"
+          d="M322,225.5 A28,28 0 1 0 378,225.5 A28,28 0 1 0 322,225.5 Z
+             M362.05,208.30 L245.85,126.90 L221.75,161.30 L337.95,242.70 Z
+             M212.8,144.1 A21,21 0 1 0 254.8,144.1 A21,21 0 1 0 212.8,144.1 Z" />
+
+    <!-- Arm: bearing, tube, headshell. -->
+    <path fill="#4FC3F7"
+          d="M330,225.5 A20,20 0 1 0 370,225.5 A20,20 0 1 0 330,225.5 Z
+             M357.46,214.85 L241.26,133.45 L226.34,154.75 L342.54,236.15 Z
+             M220.8,144.1 A13,13 0 1 0 246.8,144.1 A13,13 0 1 0 220.8,144.1 Z" />
+
+    <!-- Pivot. -->
+    <path fill="#101418"
+          d="M343,225.5 A7,7 0 1 0 357,225.5 A7,7 0 1 0 343,225.5 Z" />
+
+</svg>

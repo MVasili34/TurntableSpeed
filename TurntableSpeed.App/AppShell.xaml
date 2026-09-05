@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="TurntableSpeed.App.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:TurntableSpeed.App.Views"
+    xmlns:loc="clr-namespace:TurntableSpeed.App.Localization"
+    Shell.FlyoutBehavior="Disabled"
+    Title="TurntableSpeed">
+
+    <!--
+        Icons are SVGs under Resources/Images and are referenced by their built name, which
+        is always .png: the resizetizer rasterises each SVG per density at build time.
+    -->
+    <TabBar>
+        <ShellContent
+            Title="{loc:Translate TabSensors}"
+            Icon="tab_sensors.png"
+            ContentTemplate="{DataTemplate views:SensorModePage}"
+            Route="sensor" />
+
+        <ShellContent
+            Title="{loc:Translate TabMicrophone}"
+            Icon="tab_microphone.png"
+            ContentTemplate="{DataTemplate views:AudioModePage}"
+            Route="audio" />
+
+        <ShellContent
+            Title="{loc:Translate TabDiagnostics}"
+            Icon="tab_diagnostics.png"
+            ContentTemplate="{DataTemplate views:DiagnosticsPage}"
+            Route="diagnostics" />
+    </TabBar>
+
+</Shell>

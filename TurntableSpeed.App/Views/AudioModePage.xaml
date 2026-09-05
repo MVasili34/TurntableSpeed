@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:loc="clr-namespace:TurntableSpeed.App.Localization"
+             x:Class="TurntableSpeed.App.Views.AudioModePage"
+             Style="{StaticResource Screen}"
+             Title="{loc:Translate TabMicrophone}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="{Binding ToggleLabel, Source={x:Static loc:LanguageViewModel.Instance}}"
+                     Command="{Binding ToggleCommand, Source={x:Static loc:LanguageViewModel.Instance}}" />
+    </ContentPage.ToolbarItems>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="14" Spacing="12">
+
+            <Border Style="{StaticResource Card}">
+                <VerticalStackLayout Spacing="6">
+                    <HorizontalStackLayout Spacing="10" VerticalOptions="End">
+                        <Label Style="{StaticResource Reading}" Text="{Binding Speed.Rpm}" />
+                        <Label Style="{StaticResource Caption}" Text="{loc:Translate UnitRpm}"
+                               VerticalOptions="End" Margin="0,0,0,12" />
+                    </HorizontalStackLayout>
+
+                    <Label Style="{StaticResource Value}" Text="{Binding Speed.Interval95}" />
+
+                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12" Margin="0,4,0,0">
+                        <Label Grid.Column="0" Style="{StaticResource SectionTitle}"
+                               FontSize="20" Text="{Binding Speed.Nominal}" />
+                        <Label Grid.Column="1" Style="{StaticResource Value}" Text="{Binding Speed.DeviationPercent}" />
+                        <Label Grid.Column="2" Style="{StaticResource Value}" Text="{Binding Speed.DeviationCents}" />
+                    </Grid>
+
+                    <ProgressBar Progress="{Binding Speed.Confidence}" ProgressColor="{StaticResource Accent}" />
+                    <Label Style="{StaticResource Caption}" Text="{Binding Speed.ConfidenceLabel}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Style="{StaticResource Card}">
+                <VerticalStackLayout Spacing="10">
+                    <Grid ColumnDefinitions="*,*,*" ColumnSpacing="8">
+                        <Button Grid.Column="0" Text="{loc:Translate ButtonStart}" Command="{Binding StartCommand}" />
+                        <Button Grid.Column="1" Text="{loc:Translate ButtonStop}" Command="{Binding StopCommand}" />
+                        <Button Grid.Column="2" Text="{loc:Translate ButtonReset}" Command="{Binding ResetCommand}" />
+                    </Grid>
+
+                    <Label Style="{StaticResource Value}" Text="{Binding Status}" />
+
+                    <BoxView HeightRequest="1" Color="{StaticResource PanelStroke}" />
+
+                    <Label Style="{StaticResource SectionTitle}" Text="{loc:Translate AudioSectionNominal}" />
+                    <Label Style="{StaticResource Caption}" Text="{loc:Translate AudioNominalHint}" />
+                    <Picker ItemsSource="{Binding NominalOptions}"
+                            SelectedIndex="{Binding SelectedNominalIndex}"
+                            TextColor="{StaticResource Ink}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Input level and capture health: §4.1 is a precondition, not a detail. -->
+            <Border Style="{StaticResource Card}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Style="{StaticResource SectionTitle}" Text="{loc:Translate AudioSectionInput}" />
+                    <ProgressBar Progress="{Binding InputLevelFraction}" ProgressColor="{StaticResource Accent}" />
+                    <Label Style="{StaticResource Value}" Text="{Binding InputLevel}" />
+                    <Label Style="{StaticResource Caption}" Text="{Binding InputQuality}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- The autocorrelation curve with its peak marked. -->
+            <Border Style="{StaticResource Card}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Style="{StaticResource SectionTitle}" Text="{loc:Translate AudioSectionAutocorrelation}" />
+                    <GraphicsView x:Name="AcfChart" Style="{StaticResource Chart}" HeightRequest="170" />
+                    <Label Style="{StaticResource Caption}" Text="{loc:Translate AudioAcfHint}" />
+                    <Label Style="{StaticResource Value}" Text="{Binding ClickReading}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Style="{StaticResource Card}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Style="{StaticResource SectionTitle}" Text="{loc:Translate AudioSectionSpectrum}" />
+                    <GraphicsView x:Name="SpectrumChart" Style="{StaticResource Chart}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Style="{StaticResource Card}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Style="{StaticResource SectionTitle}" Text="{loc:Translate SectionState}" />
+
+                    <Grid ColumnDefinitions="140,*" RowDefinitions="Auto,Auto,Auto" RowSpacing="6">
+                        <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource Caption}" Text="{loc:Translate LabelPitchDeviation}" />
+                        <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource Value}" Text="{Binding PitchDeviation}" />
+
+                        <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Caption}" Text="{loc:Translate LabelDisagreement}" />
+                        <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource Value}" Text="{Binding Disagreement}" />
+
+                        <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource Caption}" Text="{loc:Translate LabelWowSpectrum}" />
+                        <Label Grid.Row="2" Grid.Column="1" Style="{StaticResource Value}" Text="{Binding WowStatus}" />
+                    </Grid>
+
+                    <ProgressBar Progress="{Binding WowProgress}" ProgressColor="{StaticResource Accent}" />
+                    <Label Style="{StaticResource Caption}" Text="{loc:Translate AudioWowHint}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <CollectionView ItemsSource="{Binding Notices}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="8" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource Card}">
+                            <Grid ColumnDefinitions="4,*" ColumnSpacing="12">
+                                <BoxView Grid.Column="0"
+                                         Color="{Binding Level, Converter={StaticResource NoticeColor}}"
+                                         CornerRadius="2" />
+                                <VerticalStackLayout Grid.Column="1" Spacing="4">
+                                    <Label Style="{StaticResource Value}" FontAttributes="Bold" Text="{Binding Title}" />
+                                    <Label Style="{StaticResource Caption}" Text="{Binding Detail}" />
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

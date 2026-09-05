@@ -1,0 +1,71 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.4" />
+    <PackageReference Include="CsCheck" Version="4.8.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageReference Include="xunit" Version="2.9.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.4" />
+
+    <!--
+      For BindingBehaviourTests only. MAUI's binding engine is platform-independent and has a
+      plain net10.0 build, so the one assumption the language switch rests on can be checked here
+      instead of on a phone. Pinned rather than $(MauiVersion): that property only exists inside
+      the MAUI SDK, which this project does not use.
+    -->
+    <PackageReference Include="Microsoft.Maui.Controls" Version="10.0.20" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TurntableSpeed.Core\TurntableSpeed.Core.csproj" />
+  </ItemGroup>
+
+  <!-- Golden fixtures travel with the test binaries so the tests can replay them. -->
+  <ItemGroup>
+    <None Include="..\TurntableSpeed.Fixtures\**\*"
+          Link="Fixtures\%(RecursiveDir)%(Filename)%(Extension)"
+          CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <!--
+    The app's string catalogue and its XAML, as files.
+
+    They cannot be reached any other way: TurntableSpeed.App targets net10.0-android, so this
+    project cannot reference it, and the resource keys XAML uses are strings the C# compiler
+    never sees. Copying the files in is what lets the tests check that the two languages agree
+    and that every key a page asks for actually exists.
+
+    Copied by an explicit target rather than as None items: the Microsoft.Maui.Controls package
+    above brings build targets that claim every **\*.xaml item for XAML compilation, which
+    quietly emptied the copy and left the tests checking nothing.
+  -->
+  <Target Name="CopyAppResourcesForTests" BeforeTargets="Build">
+    <ItemGroup>
+      <_AppStringsForTests Include="..\TurntableSpeed.App\Localization\AppStrings*.resx" />
+      <_AppXamlForTests Include="..\TurntableSpeed.App\**\*.xaml"
+                        Exclude="..\TurntableSpeed.App\obj\**;..\TurntableSpeed.App\bin\**" />
+    </ItemGroup>
+
+    <Copy SourceFiles="@(_AppStringsForTests)"
+          DestinationFiles="@(_AppStringsForTests->'$(OutDir)Localization\%(Filename)%(Extension)')"
+          SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_AppXamlForTests)"
+          DestinationFiles="@(_AppXamlForTests->'$(OutDir)Xaml\%(RecursiveDir)%(Filename)%(Extension)')"
+          SkipUnchangedFiles="true" />
+
+    <!-- An empty copy would make EveryKeyUsedByXamlExists pass by having nothing to check. -->
+    <Error Condition="'@(_AppXamlForTests)' == ''" Text="No XAML found in TurntableSpeed.App to copy for the resource tests." />
+  </Target>
+
+</Project>

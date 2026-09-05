@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    These feed the Android theme, not MAUI's resource dictionary, so they have to be kept in
+    step with Resources/Styles/Colors.xaml by hand. colorPrimaryDark paints the status bar:
+    it matches Surface so the bar reads as part of the screen rather than a purple band.
+-->
+<resources>
+    <color name="colorPrimary">#101418</color>
+    <color name="colorPrimaryDark">#101418</color>
+    <color name="colorAccent">#4FC3F7</color>
+</resources>

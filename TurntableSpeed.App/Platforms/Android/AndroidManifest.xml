@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+	<application android:allowBackup="true" android:icon="@mipmap/appicon" android:roundIcon="@mipmap/appicon_round" android:supportsRtl="true"></application>
+
+	<!-- The acoustic mode (§4). Requested at runtime as well; without it that mode is dead. -->
+	<uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+	<!--
+		Sensors need no permission, but the app is useless without a magnetometer and a
+		gyroscope, so they are declared as preferences rather than hard requirements: a device
+		missing one still installs, and the UI explains what it cannot measure (§6, §10).
+	-->
+	<uses-feature android:name="android.hardware.sensor.compass" android:required="false" />
+	<uses-feature android:name="android.hardware.sensor.gyroscope" android:required="false" />
+	<uses-feature android:name="android.hardware.sensor.accelerometer" android:required="false" />
+	<uses-feature android:name="android.hardware.microphone" android:required="false" />
+</manifest>

@@ -1,0 +1,134 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<!--
+			Android only. Spec §9 puts Windows and macOS out of scope, and iOS was never in it.
+
+			The other Platforms/ folders are left in place on purpose, and the target framework
+			falls back to the Windows head when no Android SDK is installed. That fallback is not
+			about shipping a desktop build — it is what keeps the project loadable. Without an
+			Android SDK the android head fails during ResolveReferences with XA5300, so no
+			reference resolves and the IDE reports every file in the project as broken, including
+			the shared view models, XAML and drawing code that have nothing to do with Android.
+			Building the Windows head instead runs the C# and XAML compilers over all of that.
+			Platforms/Android/** is excluded from it by the SDK's own globbing, so everything
+			except the capture code still gets compile-checked.
+
+			Install an Android SDK (and JDK 17) and the android head comes back automatically.
+			Either head can also be forced explicitly:
+
+			  dotnet build TurntableSpeed.App -p:TargetFrameworks=net10.0-android
+
+			The probe below deliberately looks for platform-tools/adb rather than just a configured
+			path. Rider always passes AndroidSdkDirectory from its own Android settings, so a path
+			being set says nothing about whether an SDK is actually there — pointing at an empty or
+			half-populated directory is exactly the case that produces XA5300. adb is what the
+			Android SDK's own location validation checks for, so this agrees with it.
+		-->
+		<_AndroidSdkProbe Condition="'$(AndroidSdkDirectory)' != ''">$(AndroidSdkDirectory)</_AndroidSdkProbe>
+		<_AndroidSdkProbe Condition="'$(_AndroidSdkProbe)' == '' And '$(ANDROID_HOME)' != ''">$(ANDROID_HOME)</_AndroidSdkProbe>
+		<_AndroidSdkProbe Condition="'$(_AndroidSdkProbe)' == '' And '$(ANDROID_SDK_ROOT)' != ''">$(ANDROID_SDK_ROOT)</_AndroidSdkProbe>
+		<_AndroidSdkProbe Condition="'$(_AndroidSdkProbe)' == ''">$(LOCALAPPDATA)\Android\Sdk</_AndroidSdkProbe>
+		<AndroidSdkAvailable Condition="Exists('$(_AndroidSdkProbe)\platform-tools\adb.exe') Or Exists('$(_AndroidSdkProbe)/platform-tools/adb')">true</AndroidSdkAvailable>
+		<TargetFrameworks Condition="'$(AndroidSdkAvailable)' == 'true'">net10.0-android</TargetFrameworks>
+		<TargetFrameworks Condition="'$(AndroidSdkAvailable)' != 'true'">net10.0-windows10.0.19041.0</TargetFrameworks>
+
+		<OutputType>Exe</OutputType>
+		<RootNamespace>TurntableSpeed.App</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<MauiXamlInflator>SourceGen</MauiXamlInflator>
+
+		<ApplicationTitle>TurntableSpeed</ApplicationTitle>
+		<ApplicationId>com.turntablespeed.app</ApplicationId>
+		<ApplicationDisplayVersion>0.1</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<WindowsPackageType>None</WindowsPackageType>
+
+		<!--
+			Russian is the neutral (fallback) resource set, so it is served straight from the main
+			assembly and never depends on a satellite being deployed. English ships as
+			en/TurntableSpeed.App.resources.dll.
+		-->
+		<NeutralLanguage>ru</NeutralLanguage>
+
+		<!-- AudioSource.Unprocessed and the audio effect classes need API 24 (§4.1). -->
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">24.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+	</PropertyGroup>
+    
+
+	<ItemGroup>
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#101418" />
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#101418" BaseSize="128,128" />
+		<MauiImage Include="Resources\Images\*" />
+		<MauiFont Include="Resources\Fonts\*" />
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<!--
+		Strings live in .resx and are reached through a generated AppStrings class, so a typo in
+		C# is a compile error rather than a blank label. The generator is MSBuild's own, not
+		Visual Studio's ResXFileCodeGenerator: it runs on the command line and on CI too, and it
+		writes into obj/ so nothing generated is ever committed.
+
+		The .resx files sit in Localization/ rather than under Resources/ because the embedded
+		resource is named after its folder: the ResourceManager the generated class builds asks
+		for "TurntableSpeed.App.Localization.AppStrings", and the folder is what has to supply
+		that name. Move the files and the lookup fails at runtime, not at build time.
+	-->
+	<ItemGroup>
+		<EmbeddedResource Update="Localization\AppStrings.resx">
+			<Generator>MSBuild:Compile</Generator>
+			<StronglyTypedFileName>$(IntermediateOutputPath)AppStrings.Designer.cs</StronglyTypedFileName>
+			<StronglyTypedLanguage>CSharp</StronglyTypedLanguage>
+			<StronglyTypedNamespace>TurntableSpeed.App.Localization</StronglyTypedNamespace>
+			<StronglyTypedClassName>AppStrings</StronglyTypedClassName>
+		</EmbeddedResource>
+	</ItemGroup>
+
+	<!--
+		The generated class only reaches the compiler through the GenerateResource task, which
+		emits its StronglyTypedFileName straight into @(Compile) from inside CoreResGen (see
+		Microsoft.Common.CurrentVersion.targets). That happens during a build, so a plain
+		evaluation of this project — which is all an IDE's Roslyn model gets — contains no
+		Compile item for AppStrings.Designer.cs at all, and every AppStrings.* reference in the
+		app is reported as an unresolved type even though the build is clean.
+
+		Including the file here fixes that: the item now exists at evaluation time. CoreResGen
+		still adds its own copy during the build, hence the dedupe below — two identical paths
+		on the csc command line are only warning CS2002, but the warning is noise and would be
+		an error under TreatWarningsAsErrors.
+
+		The Exists() guard is what makes a clean tree work: on the very first build the file has
+		not been generated yet, and an unconditional Include would hand csc a missing source.
+		After that build the IDE picks it up. Nothing here is committed — the path is under obj/.
+	-->
+	<ItemGroup Condition="Exists('$(IntermediateOutputPath)AppStrings.Designer.cs')">
+		<Compile Include="$(IntermediateOutputPath)AppStrings.Designer.cs" />
+	</ItemGroup>
+
+	<Target Name="DedupeAppStringsDesigner" AfterTargets="CoreResGen">
+		<ItemGroup>
+			<Compile Remove="$(IntermediateOutputPath)AppStrings.Designer.cs" />
+			<Compile Include="$(IntermediateOutputPath)AppStrings.Designer.cs" />
+		</ItemGroup>
+	</Target>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\TurntableSpeed.Core\TurntableSpeed.Core.csproj" />
+	</ItemGroup>
+
+	<!-- The fallback above is a build-check mode, not a shipping target. Say so out loud. -->
+	<Target Name="WarnOnAndroidSdkFallback" BeforeTargets="Build" Condition="'$(AndroidSdkAvailable)' != 'true'">
+		<Warning Text="No Android SDK at '$(_AndroidSdkProbe)' (no platform-tools/adb), so TurntableSpeed.App is building its Windows head instead of net10.0-android. This compile-checks the shared code only; it produces no shippable app. Install the SDK's platform-tools and build-tools plus JDK 17, or point AndroidSdkDirectory at a complete SDK, to build the real target." />
+	</Target>
+
+</Project>

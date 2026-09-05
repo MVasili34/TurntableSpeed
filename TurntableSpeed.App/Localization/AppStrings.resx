@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Neutral (fallback) resources: Russian. The project sets NeutralLanguage=ru, so a request for
+    Russian is served straight from the main assembly and never depends on a satellite being
+    present. English lives in AppStrings.en.resx and ships as TurntableSpeed.App.resources.dll.
+
+    Every {0} placeholder is filled with a string the caller has already formatted with the
+    invariant culture, so a translation must keep the placeholders but never assumes a locale.
+  -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <!-- ==== Shell ==== -->
+  <data name="TabSensors" xml:space="preserve"><value>Сенсоры</value></data>
+  <data name="TabMicrophone" xml:space="preserve"><value>Микрофон</value></data>
+  <data name="TabDiagnostics" xml:space="preserve"><value>Диагностика</value></data>
+
+  <!-- ==== Shared vocabulary ==== -->
+  <data name="ButtonStart" xml:space="preserve"><value>Старт</value></data>
+  <data name="ButtonStop" xml:space="preserve"><value>Стоп</value></data>
+  <data name="ButtonReset" xml:space="preserve"><value>Сброс</value></data>
+  <data name="ButtonRefresh" xml:space="preserve"><value>Обновить</value></data>
+  <data name="SectionState" xml:space="preserve"><value>СОСТОЯНИЕ</value></data>
+  <data name="LabelDisagreement" xml:space="preserve"><value>Расхождение</value></data>
+  <data name="NoData" xml:space="preserve"><value>нет данных</value></data>
+
+  <!-- ==== Units ==== -->
+  <data name="UnitRpm" xml:space="preserve"><value>об/мин</value></data>
+  <data name="UnitHertz" xml:space="preserve"><value>Гц</value></data>
+  <data name="UnitSeconds" xml:space="preserve"><value>с</value></data>
+  <data name="UnitAmplitude" xml:space="preserve"><value>ампл.</value></data>
+  <data name="UnitMicrotesla" xml:space="preserve"><value>мкТл</value></data>
+  <data name="UnitRadiansPerSecond" xml:space="preserve"><value>рад/с</value></data>
+  <data name="UnitMetresPerSecondSquared" xml:space="preserve"><value>м/с²</value></data>
+
+  <!-- ==== Headline reading ==== -->
+  <data name="RpmValue" xml:space="preserve">
+    <value>{0} об/мин</value>
+    <comment>{0} — уже отформатированное число оборотов.</comment>
+  </data>
+  <data name="SpeedInterval95" xml:space="preserve">
+    <value>± {0} об/мин (95%)</value>
+    <comment>{0} — полуширина доверительного интервала.</comment>
+  </data>
+  <data name="ConfidenceNoSignal" xml:space="preserve"><value>нет сигнала</value></data>
+  <data name="ConfidenceCollecting" xml:space="preserve"><value>накопление</value></data>
+  <data name="ConfidenceConverging" xml:space="preserve"><value>сходится</value></data>
+  <data name="ConfidenceConfident" xml:space="preserve"><value>уверенно</value></data>
+
+  <!-- ==== Sensor screen ==== -->
+  <data name="SensorSectionZero" xml:space="preserve"><value>КАЛИБРОВКА НУЛЯ ГИРОСКОПА</value></data>
+  <data name="SensorZeroHint" xml:space="preserve"><value>Остановите диск на 2–3 секунды. Без этого смещение нуля неизвестно и мгновенная скорость уедет.</value></data>
+  <data name="SensorZeroButton" xml:space="preserve"><value>Измерить ноль</value></data>
+  <data name="SensorSectionInstant" xml:space="preserve"><value>МГНОВЕННАЯ СКОРОСТЬ</value></data>
+  <data name="SensorSectionWow" xml:space="preserve"><value>ДЕТОНАЦИЯ</value></data>
+  <data name="SensorWowHint" xml:space="preserve"><value>Ожидаемые пики: частота вращения диска, шкив мотора, период пассика.</value></data>
+  <data name="LabelOrientation" xml:space="preserve"><value>Ориентация</value></data>
+  <data name="LabelSpinUp" xml:space="preserve"><value>Время разгона</value></data>
+  <data name="LabelGyroScale" xml:space="preserve"><value>Масштаб гироскопа</value></data>
+  <data name="SensorPlotRateEmpty" xml:space="preserve"><value>нет данных гироскопа</value></data>
+  <data name="SensorPlotWowEmpty" xml:space="preserve"><value>спектр появится после нескольких оборотов</value></data>
+  <data name="SensorZeroNotMeasured" xml:space="preserve"><value>Ноль гироскопа не измерен</value></data>
+  <data name="SensorNoInertialSensors" xml:space="preserve"><value>Инерциальные датчики недоступны на этом устройстве</value></data>
+  <data name="SensorZeroHoldStill" xml:space="preserve"><value>Остановите диск и не трогайте телефон</value></data>
+  <data name="SensorZeroMeasuring" xml:space="preserve">
+    <value>Идёт измерение нуля: {0}</value>
+    <comment>{0} — доля собранных данных в процентах.</comment>
+  </data>
+  <data name="SensorZeroStillTurning" xml:space="preserve"><value>Диск ещё вращался — остановите его и повторите</value></data>
+  <data name="SensorZeroPhoneMoved" xml:space="preserve"><value>Телефон двигался — положите его на диск и повторите</value></data>
+  <data name="SensorZeroMeasured" xml:space="preserve">
+    <value>Ноль измерен: |смещение| {0} рад/с, σ {1}</value>
+    <comment>{0} — модуль смещения нуля, {1} — наибольшее СКО по осям.</comment>
+  </data>
+  <data name="SensorWowSummary" xml:space="preserve">
+    <value>СКЗ {0}%, пик {1}% на {2} Гц</value>
+    <comment>{0} — СКЗ детонации, {1} — пиковое значение, {2} — частота пика.</comment>
+  </data>
+  <data name="SensorDisagreement" xml:space="preserve">
+    <value>{0}% (гироскоп против магнитометра)</value>
+    <comment>{0} — расхождение со знаком.</comment>
+  </data>
+  <data name="SensorTilt" xml:space="preserve"><value>наклон {0}°</value></data>
+  <data name="SensorRadius" xml:space="preserve">
+    <value>, радиус ≈ {0} см</value>
+    <comment>Дописывается к SensorTilt, поэтому начинается с запятой.</comment>
+  </data>
+  <data name="SensorSpinUpSeconds" xml:space="preserve"><value>{0} с</value></data>
+  <data name="SensorSpinUpNotObserved" xml:space="preserve"><value>не зафиксирован</value></data>
+  <data name="SensorGyroScaleMeasured" xml:space="preserve"><value>{0} (измерен по магнитометру)</value></data>
+  <data name="SensorGyroScaleNotMeasured" xml:space="preserve"><value>не измерен</value></data>
+
+  <!-- ==== Audio screen ==== -->
+  <data name="AudioSectionNominal" xml:space="preserve"><value>НОМИНАЛ</value></data>
+  <data name="AudioNominalHint" xml:space="preserve"><value>Отклонение строя нужно к чему-то приложить. Укажите, на какой скорости играет пластинка.</value></data>
+  <data name="AudioSectionInput" xml:space="preserve"><value>ВХОД</value></data>
+  <data name="AudioSectionAutocorrelation" xml:space="preserve"><value>АВТОКОРРЕЛЯЦИЯ ЩЕЛЧКОВ</value></data>
+  <data name="AudioAcfHint" xml:space="preserve"><value>Пик — период оборота. Если пика нет, зацепиться не за что: попробуйте подводящую канавку.</value></data>
+  <data name="AudioSectionSpectrum" xml:space="preserve"><value>СПЕКТР</value></data>
+  <data name="LabelPitchDeviation" xml:space="preserve"><value>Отклонение строя</value></data>
+  <data name="LabelWowSpectrum" xml:space="preserve"><value>Спектр детонации</value></data>
+  <data name="AudioWowHint" xml:space="preserve"><value>Длительный режим: положите телефон и не трогайте 2–3 минуты.</value></data>
+  <data name="AudioPlotAcfEmpty" xml:space="preserve"><value>ждём 10–15 секунд звука</value></data>
+  <data name="AudioPlotSpectrumEmpty" xml:space="preserve"><value>нет сигнала</value></data>
+  <data name="AudioStatusReady" xml:space="preserve"><value>Готово к запуску</value></data>
+  <data name="AudioStatusRequestingMicrophone" xml:space="preserve"><value>Запрашиваю доступ к микрофону…</value></data>
+  <data name="AudioStatusMicrophoneDenied" xml:space="preserve"><value>Без доступа к микрофону акустический режим не работает</value></data>
+  <data name="AudioStatusMicrophoneFailed" xml:space="preserve">
+    <value>Не удалось открыть микрофон: {0}</value>
+    <comment>{0} — сообщение системы, не переводится.</comment>
+  </data>
+  <data name="AudioStatusRunning" xml:space="preserve"><value>Идёт измерение</value></data>
+  <data name="AudioStatusCaptureFailed" xml:space="preserve"><value>Захват прерван: {0}</value></data>
+  <data name="AudioStatusStopped" xml:space="preserve"><value>Остановлено</value></data>
+  <data name="AudioInputLevel" xml:space="preserve">
+    <value>{0} dBFS (пик {1})</value>
+    <comment>{0} — СКЗ уровня, {1} — пиковый уровень.</comment>
+  </data>
+  <data name="AudioInputQuality" xml:space="preserve">
+    <value>шумовой пол {0} dBFS, динамика {1} дБ</value>
+  </data>
+  <data name="AudioClickReading" xml:space="preserve"><value>{0} ± {1} об/мин</value></data>
+  <data name="AudioPitchCents" xml:space="preserve">
+    <value>{0} ¢</value>
+    <comment>{0} — отклонение строя в центах, со знаком.</comment>
+  </data>
+  <data name="AudioDisagreement" xml:space="preserve"><value>{0}% (строй против щелчков)</value></data>
+  <data name="AudioWowPeak" xml:space="preserve"><value>пик на {0} Гц → {1} об/мин</value></data>
+  <data name="AudioWowProgress" xml:space="preserve">
+    <value>накоплено {0} от 3 минут</value>
+    <comment>{0} — доля накопленного в процентах.</comment>
+  </data>
+
+  <!-- ==== Diagnostics screen ==== -->
+  <data name="SectionLanguage" xml:space="preserve"><value>ЯЗЫК</value></data>
+  <data name="LanguageHint" xml:space="preserve"><value>Переключается сразу: экраны не перезагружаются, измерение не сбрасывается.</value></data>
+  <data name="DiagSectionDevice" xml:space="preserve"><value>УСТРОЙСТВО</value></data>
+  <data name="DiagSectionRaw" xml:space="preserve"><value>СЫРЫЕ ЗНАЧЕНИЯ ДАТЧИКОВ</value></data>
+  <data name="DiagSectionCapture" xml:space="preserve"><value>ЗАХВАТ</value></data>
+  <data name="DiagSectionExport" xml:space="preserve"><value>ЭКСПОРТ СЫРЫХ ДАННЫХ</value></data>
+  <data name="DiagExportHint" xml:space="preserve"><value>CSV и WAV в том же формате, что читает воспроизведение в тестах — так пополняется набор фикстур.</value></data>
+  <data name="LabelMagnetometer" xml:space="preserve"><value>Магнитометр</value></data>
+  <data name="LabelGyroscope" xml:space="preserve"><value>Гироскоп</value></data>
+  <data name="LabelAccelerometer" xml:space="preserve"><value>Акселерометр</value></data>
+  <data name="LabelAudio" xml:space="preserve"><value>Аудио</value></data>
+  <data name="LabelGyroScaleFactor" xml:space="preserve"><value>Масштабный коэффициент гироскопа</value></data>
+  <data name="LabelRecorded" xml:space="preserve"><value>Записано</value></data>
+  <data name="DiagExportMagnetometerCsv" xml:space="preserve"><value>Магнитометр CSV</value></data>
+  <data name="DiagExportGyroscopeCsv" xml:space="preserve"><value>Гироскоп CSV</value></data>
+  <data name="DiagExportAccelerometerCsv" xml:space="preserve"><value>Акселерометр CSV</value></data>
+  <data name="DiagExportAudioWav" xml:space="preserve"><value>Аудио WAV</value></data>
+  <data name="DiagSampleLine" xml:space="preserve">
+    <value>x {0}  y {1}  z {2} {3}  |v| {4}</value>
+    <comment>{0}..{2} — оси, {3} — единица измерения, {4} — модуль вектора.</comment>
+  </data>
+  <data name="DiagAudioCapture" xml:space="preserve">
+    <value>{0} Гц, записано {1} с</value>
+    <comment>{0} — частота дискретизации, {1} — длительность записи.</comment>
+  </data>
+  <data name="DiagRecorded" xml:space="preserve">
+    <value>магнитометр {0}, гироскоп {1}, акселерометр {2} отсчётов</value>
+  </data>
+  <data name="DiagExportNothing" xml:space="preserve"><value>Нечего экспортировать — сначала запустите измерение.</value></data>
+  <data name="DiagExportNoAudio" xml:space="preserve"><value>Аудио ещё не записывалось.</value></data>
+  <data name="DiagExportSaved" xml:space="preserve"><value>Сохранено: {0}</value></data>
+  <data name="DiagExportFailed" xml:space="preserve"><value>Не удалось сохранить: {0}</value></data>
+
+  <!-- ==== Notices: sensor mode (§3) ==== -->
+  <data name="NoticeNoMagnetometerTitle" xml:space="preserve"><value>Нет магнитометра</value></data>
+  <data name="NoticeNoMagnetometerDetail" xml:space="preserve"><value>На этом устройстве нет магнитометра — опорного прибора режима. Осталась только оценка по гироскопу, у которого заводская ошибка масштаба 1–3%, и это видно по ширине интервала.</value></data>
+  <data name="NoticeSensorMethodsDisagreeTitle" xml:space="preserve"><value>Методы расходятся</value></data>
+  <data name="NoticeSensorMethodsDisagreeDetail" xml:space="preserve"><value>Магнитометр и гироскоп дают разную скорость. Показано значение магнитометра; расхождение указано отдельно и означает, что доверять результату пока рано.</value></data>
+  <data name="NoticeMagneticDisturbanceTitle" xml:space="preserve"><value>Магнитная помеха</value></data>
+  <data name="NoticeMagneticDisturbanceDetail" xml:space="preserve"><value>Фаза поля ложится на прямую заметно хуже обычного. Уберите подальше колонки, блоки питания и всё намагниченное.</value></data>
+  <data name="NoticePhoneNotFlatTitle" xml:space="preserve"><value>Телефон лежит неровно</value></data>
+  <data name="NoticePhoneNotFlatDetail" xml:space="preserve"><value>Положите телефон экраном вверх плашмя. На точность магнитометра это почти не влияет, но мешает проверкам по акселерометру.</value></data>
+  <data name="NoticeGyroZeroTitle" xml:space="preserve"><value>Ноль гироскопа не откалиброван</value></data>
+  <data name="NoticeGyroZeroDetail" xml:space="preserve"><value>Остановите диск на 2–3 секунды, чтобы измерить смещение нуля. Без этого гироскоп показывает скорость со сдвигом.</value></data>
+  <data name="NoticeNoGyroscopeTitle" xml:space="preserve"><value>Нет гироскопа</value></data>
+  <data name="NoticeNoGyroscopeDetail" xml:space="preserve"><value>Мгновенная скорость, детонация и время разгона недоступны. Сама скорость измеряется магнитометром и от этого не страдает.</value></data>
+  <data name="NoticeNotEnoughRevolutionsTitle" xml:space="preserve"><value>Мало оборотов</value></data>
+  <data name="NoticeNotEnoughRevolutionsDetail" xml:space="preserve"><value>Дайте диску сделать хотя бы несколько оборотов. За 60 секунд метод выходит на точность лучше 0.05%.</value></data>
+  <data name="NoticeLoadTitle" xml:space="preserve"><value>Телефон нагружает диск</value></data>
+  <data name="LoadCaveat" xml:space="preserve">
+    <value>Телефон весит 150–250 г — на бюджетном пассиковом приводе это само по себе может замедлить диск. Здесь измерена скорость с телефоном на диске, а не при проигрывании. Сравните с акустическим режимом.</value>
+    <comment>Требование §3.6: показывается при каждом результате сенсорного режима.</comment>
+  </data>
+
+  <!-- ==== Notices: audio mode (§4) ==== -->
+  <data name="NoticeInputProcessedTitle" xml:space="preserve"><value>Вход обрабатывается</value></data>
+  <data name="NoticeInputProcessedDetail" xml:space="preserve"><value>Похоже, шумоподавление или АРУ не отключились. Они вырезают именно те щелчки, на которых построен основной алгоритм, и результату верить нельзя.</value></data>
+  <data name="NoticeClippingTitle" xml:space="preserve"><value>Перегрузка входа</value></data>
+  <data name="NoticeClippingDetail" xml:space="preserve"><value>Сигнал упирается в максимум. Отодвиньте телефон от динамика или убавьте громкость.</value></data>
+  <data name="NoticeTooQuietTitle" xml:space="preserve"><value>Слишком тихо</value></data>
+  <data name="NoticeTooQuietDetail" xml:space="preserve"><value>Микрофон почти ничего не слышит. Поднесите телефон ближе или прибавьте громкость.</value></data>
+  <data name="NoticeAudioMethodsDisagreeTitle" xml:space="preserve"><value>Методы расходятся</value></data>
+  <data name="NoticeAudioMethodsDisagreeDetail" xml:space="preserve"><value>Период щелчков и отклонение строя дают разную скорость. Чаще всего это значит, что запись просто сведена не в 440 Гц — щелчки надёжнее.</value></data>
+  <data name="NoticeNoClicksTitle" xml:space="preserve"><value>Щелчки не найдены</value></data>
+  <data name="NoticeNoClicksDetail" xml:space="preserve"><value>На чистой пластинке в тихом месте цепляться не за что. Попробуйте подводящую канавку или паузу между дорожками.</value></data>
+  <data name="NoticeNoNominalTitle" xml:space="preserve"><value>Номинал не определён</value></data>
+  <data name="NoticeNoNominalDetail" xml:space="preserve"><value>Отклонение строя измеряется, но приложить его не к чему. Выберите 33⅓ / 45 / 78 вручную или дождитесь, пока щелчки дадут номинал.</value></data>
+  <data name="NoticeCollectingTitle" xml:space="preserve"><value>Идёт накопление</value></data>
+  <data name="NoticeCollectingDetail" xml:space="preserve"><value>Уверенный ответ «33 или 45» набирается за 10–15 секунд.</value></data>
+  <data name="NoticeRecordTuningTitle" xml:space="preserve"><value>Строй записи неизвестен</value></data>
+  <data name="PitchCaveat" xml:space="preserve">
+    <value>Отклонение строя смешивает ошибку проигрывателя со строем самой записи: группа могла играть не в 440 Гц, мастеринг мог уехать. Опорный акустический метод — щелчки.</value>
+    <comment>Требование §4.3: показывается при любом показании по строю.</comment>
+  </data>
+
+  <!-- ==== Notices: raw input diagnostics (§4.1) ==== -->
+  <data name="NoticeNoiseGateTitle" xml:space="preserve"><value>Похоже на шумовой гейт</value></data>
+  <data name="NoticeNoiseGateDetail" xml:space="preserve"><value>В паузах сигнал падает в цифровой ноль — так микрофон в комнате не умеет. Обработка входа не отключилась.</value></data>
+  <data name="NoticeAgcTitle" xml:space="preserve"><value>Похоже на АРУ</value></data>
+  <data name="NoticeAgcDetail" xml:space="preserve"><value>Долговременный уровень держится постоянным при живой короткой динамике. Автоматическая регулировка усиления искажает огибающую.</value></data>
+  <data name="NoticeRawInputUnavailableTitle" xml:space="preserve"><value>Необработанный вход недоступен</value></data>
+  <data name="NoticeRawInputUnavailableDetail" xml:space="preserve"><value>Система не отдала необработанный поток. Измерение возможно, но проверьте диагностику входа.</value></data>
+  <data name="NoticeInputClippingTitle" xml:space="preserve"><value>Перегрузка</value></data>
+  <data name="NoticeInputClippingDetail" xml:space="preserve"><value>Сигнал упирается в максимум.</value></data>
+  <data name="NoticeInputTooQuietTitle" xml:space="preserve"><value>Слишком тихо</value></data>
+  <data name="NoticeInputTooQuietDetail" xml:space="preserve"><value>Уровень ниже рабочего.</value></data>
+  <data name="NoticeDcOffsetTitle" xml:space="preserve"><value>Постоянная составляющая</value></data>
+  <data name="NoticeDcOffsetDetail" xml:space="preserve"><value>У сигнала заметное смещение нуля — обычно признак странной обработки на входе.</value></data>
+  <data name="NoticeSampleRateTitle" xml:space="preserve"><value>Неожиданная частота дискретизации</value></data>
+  <data name="NoticeSampleRateDetail" xml:space="preserve"><value>Система выдала не 44100 и не 48000 Гц. На точность это не влияет, но говорит, что запрос захвата выполнен не полностью.</value></data>
+
+  <!-- ==== Capture environment and platform errors ==== -->
+  <data name="CaptureUnavailable" xml:space="preserve"><value>Захват недоступен на этой платформе</value></data>
+  <data name="ExportUnavailable" xml:space="preserve"><value>Экспорт недоступен на этой платформе.</value></data>
+  <data name="ErrorNoAudioRecorded" xml:space="preserve"><value>Аудио ещё не записывалось.</value></data>
+  <data name="ErrorNoExportDirectory" xml:space="preserve"><value>Нет доступного каталога для экспорта.</value></data>
+  <data name="ErrorAudioRecordInit" xml:space="preserve"><value>Не удалось инициализировать AudioRecord.</value></data>
+  <data name="AndroidSensorsNoAccess" xml:space="preserve"><value>нет доступа к датчикам</value></data>
+  <data name="AndroidSensorMagnetometer" xml:space="preserve"><value>магнитометр: {0}</value></data>
+  <data name="AndroidSensorGyroscope" xml:space="preserve"><value>гироскоп: {0}</value></data>
+  <data name="AndroidSensorAccelerometer" xml:space="preserve"><value>акселерометр: {0}</value></data>
+  <data name="AnswerPresent" xml:space="preserve"><value>есть</value></data>
+  <data name="AnswerAbsent" xml:space="preserve"><value>нет</value></data>
+  <data name="AndroidAudioDetails" xml:space="preserve">
+    <value>источник {0}, {1} Гц, буфер {2} Б</value>
+    <comment>{0} — имя источника Android, {1} — частота дискретизации, {2} — размер буфера в байтах.</comment>
+  </data>
+  <data name="AndroidAudioUnprocessedUnsupported" xml:space="preserve"><value>устройство не поддерживает UNPROCESSED; источник {0}, {1} Гц</value></data>
+
+</root>
